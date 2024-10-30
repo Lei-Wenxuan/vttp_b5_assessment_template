@@ -33,8 +33,11 @@ public class Game {
                 else if (board[i][j] == 'O')
                     numOfO++;
 
+        int diff = Math.abs(numOfO - numOfX);
+
         if (numOfX <= numOfO)
-            return true;
+            if (diff <= 1)
+                return true;
 
         return false;
     }
