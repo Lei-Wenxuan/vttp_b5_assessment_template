@@ -148,10 +148,11 @@ public class Game {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] == '.') {
-                    System.out.printf("y=%d, x=%d, utility=", i, j);
                     board[i][j] = player;
 
                     int moveVal = minimax(board, 0, false);
+                    
+                    System.out.printf("y=%d, x=%d, utility=", i, j);
                     System.out.println(moveVal);
 
                     board[i][j] = '.';
