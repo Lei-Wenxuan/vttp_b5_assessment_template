@@ -8,30 +8,32 @@ public class Game {
         int row, col;
     }
 
-    static char player = 'x', opponent = 'o';
+    static char player = 'X', opponent = 'O';
 
-    private final char[] BOARD = new char[] { '.', '.', '.', '.', '.', '.', '.', '.', '.' };
+    private char[][] board = new char[3][3];
+
+    public Game(char[][] board) {
+        this.board = board;
+    }
 
     public void drawTheField() {
         System.out.println(
                 "Board:" + "\n" +
-                BOARD[6] + " " + BOARD[7] + " " + BOARD[8] + "\n" +
-                BOARD[3] + " " + BOARD[4] + " " + BOARD[5] + "\n" +
-                BOARD[0] + " " + BOARD[1] + " " + BOARD[2] + "\n"
-                );
+                        board[0][0] + " " + board[0][1] + " " + board[0][2] + "\n" +
+                        board[1][0] + " " + board[1][1] + " " + board[1][2] + "\n" +
+                        board[2][0] + " " + board[2][1] + " " + board[2][2] + "\n");
     }
 
     private ArrayList<Integer> makeAvailableSpotsArray() {
         ArrayList<Integer> availableSpots = new ArrayList<>(9);
-        for (int i = 0; i < 9; i++) {
-            if (BOARD[i] == ' ')
-                availableSpots.add(i);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == '.')
+                    availableSpots.add(i);
+            }
         }
         return availableSpots;
     }
-
-
-    
 
     // This function returns true if there are moves
     // remaining on the board. It returns false if
@@ -174,7 +176,7 @@ public class Game {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 // Check if cell is empty
-                if (board[i][j] == '_') {
+                if (board[i][j] == '.') {
                     // Make the move
                     board[i][j] = player;
 
