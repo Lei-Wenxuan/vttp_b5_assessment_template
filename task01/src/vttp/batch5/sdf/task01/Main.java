@@ -1,7 +1,5 @@
 package vttp.batch5.sdf.task01;
 
-// Use this class as the entry point of your program
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -21,7 +19,8 @@ import vttp.batch5.sdf.task01.models.BikeEntry;
 
 public class Main {
 
-	public static final String[] POSITION = { "highest", "second highest", "third highest", "fourth highest", "fifth highest" };
+	public static final String[] POSITION = { "highest", "second highest", "third highest", "fourth highest",
+			"fifth highest" };
 	public static final String[] WEATHER = { "Clear, Few clouds, Partly cloudy, Partly cloudy",
 			"Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist",
 			"Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds",
@@ -32,9 +31,6 @@ public class Main {
 		Map<Integer, BikeEntry> bikeMap = new HashMap<>();
 
 		Path p = null;
-		// p = Paths.get("vttp_b5_assessment_template/task01/day.csv");
-		// System.out.println("To remove hardcoded path");
-		// System.out.println("To uncomment args ifelse");
 
 		if (args.length > 0) {
 			p = Paths.get(args[0]);
