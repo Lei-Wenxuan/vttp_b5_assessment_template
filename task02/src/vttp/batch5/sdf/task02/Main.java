@@ -24,11 +24,6 @@ public class Main {
 
 		char[][] board = loadFile(dirPath);
 
-		// Move bestMove = findBestMove(board);
-
-		// System.out.printf("The Optimal Move is:\n");
-		// System.out.printf("ROW: %d COL: %d\n\n", bestMove.row, bestMove.col);
-
 		Game game = new Game(board);
 
 		System.out.println();
