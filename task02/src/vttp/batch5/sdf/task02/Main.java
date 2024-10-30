@@ -37,6 +37,8 @@ public class Main {
 
 		System.out.println("--------------------------");
 
+		game.listPossibleMoves(board);
+
 	}
 
 	public static char[][] loadFile(String dirPath) throws IOException {

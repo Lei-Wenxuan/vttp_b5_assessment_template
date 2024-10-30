@@ -1,7 +1,5 @@
 package vttp.batch5.sdf.task02;
 
-import java.util.ArrayList;
-
 public class Game {
 
     static class Move {
@@ -24,16 +22,16 @@ public class Game {
                         board[2][0] + " " + board[2][1] + " " + board[2][2] + "\n");
     }
 
-    private ArrayList<Integer> makeAvailableSpotsArray() {
-        ArrayList<Integer> availableSpots = new ArrayList<>(9);
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == '.')
-                    availableSpots.add(i);
-            }
-        }
-        return availableSpots;
-    }
+    // private ArrayList<Integer> makeAvailableSpotsArray() {
+    //     ArrayList<Integer> availableSpots = new ArrayList<>(9);
+    //     for (int i = 0; i < 3; i++) {
+    //         for (int j = 0; j < 3; j++) {
+    //             if (board[i][j] == '.')
+    //                 availableSpots.add(i);
+    //         }
+    //     }
+    //     return availableSpots;
+    // }
 
     // This function returns true if there are moves
     // remaining on the board. It returns false if
@@ -64,26 +62,26 @@ public class Game {
             if (b[0][col] == b[1][col] &&
                     b[1][col] == b[2][col]) {
                 if (b[0][col] == player)
-                    return +10;
+                    return +1;
 
                 else if (b[0][col] == opponent)
-                    return -10;
+                    return -1;
             }
         }
 
         // Checking for Diagonals for X or O victory.
         if (b[0][0] == b[1][1] && b[1][1] == b[2][2]) {
             if (b[0][0] == player)
-                return +10;
+                return +1;
             else if (b[0][0] == opponent)
-                return -10;
+                return -1;
         }
 
         if (b[0][2] == b[1][1] && b[1][1] == b[2][0]) {
             if (b[0][2] == player)
-                return +10;
+                return +1;
             else if (b[0][2] == opponent)
-                return -10;
+                return -1;
         }
 
         // Else if none of them have won then return 0
@@ -98,13 +96,13 @@ public class Game {
 
         // If Maximizer has won the game
         // return his/her evaluated score
-        if (score == 10)
-            return score - depth;
+        if (score == 1)
+            return score;
 
         // If Minimizer has won the game
         // return his/her evaluated score
-        if (score == -10)
-            return score + depth;
+        if (score == -1)
+            return score;
 
         // If there are no more moves and
         // no winner then it is a tie
@@ -113,13 +111,13 @@ public class Game {
 
         // If this maximizer's move
         if (isMax) {
-            int best = -1000;
+            int best = -100;
 
             // Traverse all cells
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     // Check if cell is empty
-                    if (board[i][j] == '_') {
+                    if (board[i][j] == '.') {
                         // Make the move
                         board[i][j] = player;
 
@@ -129,7 +127,7 @@ public class Game {
                                 depth + 1, !isMax));
 
                         // Undo the move
-                        board[i][j] = '_';
+                        board[i][j] = '.';
                     }
                 }
             }
@@ -138,13 +136,13 @@ public class Game {
 
         // If this minimizer's move
         else {
-            int best = 1000;
+            int best = 100;
 
             // Traverse all cells
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     // Check if cell is empty
-                    if (board[i][j] == '_') {
+                    if (board[i][j] == '.') {
                         // Make the move
                         board[i][j] = opponent;
 
@@ -154,7 +152,7 @@ public class Game {
                                 depth + 1, !isMax));
 
                         // Undo the move
-                        board[i][j] = '_';
+                        board[i][j] = '.';
                     }
                 }
             }
@@ -162,13 +160,10 @@ public class Game {
         }
     }
 
-    // This will return the best possible
-    // move for the player
-    static Move findBestMove(char board[][]) {
-        int bestVal = -1000;
-        Move bestMove = new Move();
-        bestMove.row = -1;
-        bestMove.col = -1;
+    public void listPossibleMoves(char board[][]) {
+        Move possibleMove = new Move();
+        possibleMove.row = -1;
+        possibleMove.col = -1;
 
         // Traverse all cells, evaluate minimax function
         // for all empty cells. And return the cell
@@ -178,30 +173,61 @@ public class Game {
                 // Check if cell is empty
                 if (board[i][j] == '.') {
                     // Make the move
+                    System.out.printf("y=%d, x=%d, utility=", i, j);
                     board[i][j] = player;
 
                     // compute evaluation function for this
                     // move.
                     int moveVal = minimax(board, 0, false);
+                    System.out.println(moveVal);
 
                     // Undo the move
-                    board[i][j] = '_';
-
-                    // If the value of the current move is
-                    // more than the best value, then update
-                    // best/
-                    if (moveVal > bestVal) {
-                        bestMove.row = i;
-                        bestMove.col = j;
-                        bestVal = moveVal;
+                    board[i][j] = '.';
                     }
                 }
             }
-        }
-
-        System.out.printf("The value of the best Move " +
-                "is: %d\n\n", bestVal);
-
-        return bestMove;
     }
+
+    // This will return the best possible
+    // move for the player
+    // static Move findBestMove(char board[][]) {
+    //     int bestVal = -100;
+    //     Move bestMove = new Move();
+    //     bestMove.row = -1;
+    //     bestMove.col = -1;
+
+    //     // Traverse all cells, evaluate minimax function
+    //     // for all empty cells. And return the cell
+    //     // with optimal value.
+    //     for (int i = 0; i < 3; i++) {
+    //         for (int j = 0; j < 3; j++) {
+    //             // Check if cell is empty
+    //             if (board[i][j] == '.') {
+    //                 // Make the move
+    //                 board[i][j] = player;
+
+    //                 // compute evaluation function for this
+    //                 // move.
+    //                 int moveVal = minimax(board, 0, false);
+
+    //                 // Undo the move
+    //                 board[i][j] = '_';
+
+    //                 // If the value of the current move is
+    //                 // more than the best value, then update
+    //                 // best/
+    //                 if (moveVal > bestVal) {
+    //                     bestMove.row = i;
+    //                     bestMove.col = j;
+    //                     bestVal = moveVal;
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     System.out.printf("The value of the best Move " +
+    //             "is: %d\n\n", bestVal);
+
+    //     return bestMove;
+    // }
 }
