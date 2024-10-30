@@ -30,14 +30,14 @@ public class Main {
 
 		Map<Integer, BikeEntry> bikeMap = new HashMap<>();
 
-		Path p = null;
+		Path p = Paths.get("day.csv");
 
-		if (args.length > 0) {
-			p = Paths.get(args[0]);
-		} else {
-			System.err.println("No file provided");
-			System.exit(0);
-		}
+		// if (args.length > 0) {
+		// 	p = Paths.get(args[0]);
+		// } else {
+		// 	System.err.println("No file provided");
+		// 	System.exit(0);
+		// }
 
 		File file = p.toFile();
 
