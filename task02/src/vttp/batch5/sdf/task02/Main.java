@@ -20,6 +20,8 @@ public class Main {
 			System.exit(0);
 		}
 
+		System.out.println("Processing: " + dirPath);
+
 		char[][] board = loadFile(dirPath);
 
 		// Move bestMove = findBestMove(board);
@@ -29,6 +31,7 @@ public class Main {
 
 		Game game = new Game(board);
 
+		System.out.println();
 		game.drawTheField();
 
 		System.out.println("--------------------------");
