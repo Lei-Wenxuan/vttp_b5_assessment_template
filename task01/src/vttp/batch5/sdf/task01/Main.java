@@ -20,6 +20,7 @@ import vttp.batch5.sdf.task01.models.BikeEntry;
 public class Main {
 
 	public static final String[] POSITION = { "highest", "second highest", "third highest", "fourth highest", "fifth highest" };
+	public static final String[] DAY = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	public static final String[] WEATHER = { "Clear, Few clouds, Partly cloudy, Partly cloudy",
 			"Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist",
 			"Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds",
@@ -75,7 +76,7 @@ public class Main {
 
 				String position = POSITION[top5];
 				String season = Utilities.toSeason(bikeEntry.getSeason());
-				String day = Utilities.toWeekday(bikeEntry.getWeekday());
+				String day = toWeekdayNew(bikeEntry.getWeekday());
 				String month = Utilities.toMonth(bikeEntry.getMonth());
 				int total = bikeEntry.getCasual() + bikeEntry.getRegistered();
 				String weather = toWeather(bikeEntry.getWeather());
@@ -124,6 +125,21 @@ public class Main {
 			BikeEntry bikeEntry = entry.getValue();
 			System.out.println(
 					"Key : " + entry.getKey() + " Value : " + (bikeEntry.getCasual() + bikeEntry.getRegistered()));
+		}
+	}
+
+	public static String toWeekdayNew(int weekday) {
+		switch (weekday) {
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				return DAY[weekday];
+			default:
+				return "incorrect day";
 		}
 	}
 
