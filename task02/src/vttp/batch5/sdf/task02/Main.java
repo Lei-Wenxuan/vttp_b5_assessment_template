@@ -61,7 +61,7 @@ public class Main {
 		while ((line = br.readLine()) != null) {
 			char[] xArray = line.toCharArray();
 			for (int xCoords = 0; xCoords < xArray.length; xCoords++) {
-				board[yCoords][xCoords] = xArray[xCoords];
+				board[yCoords][xCoords] = Character.toUpperCase(xArray[xCoords]);
 			}
 			yCoords++;
 		}
