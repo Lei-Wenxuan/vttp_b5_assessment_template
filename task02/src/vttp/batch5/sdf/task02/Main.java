@@ -11,17 +11,13 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
-		String dirPath;
-
-		dirPath = "vttp_b5_assessment_template\\task02\\TTT\\figure1.txt";
-		System.out.println("To delete hardcoded path");
-		System.out.println("To uncomment args error msg");
+		String dirPath = "";
 
 		if (args.length > 0) {
 			dirPath = args[0];
 		} else {
-			// System.err.println("No file provided");
-			// System.exit(0);
+			System.err.println("No file provided");
+			System.exit(0);
 		}
 
 		char[][] board = loadFile(dirPath);
@@ -37,7 +33,10 @@ public class Main {
 
 		System.out.println("--------------------------");
 
-		game.listPossibleMoves(board);
+		if (game.isLegal(board))
+			game.listPossibleMoves(board);
+		else
+			System.out.println("No legal moves for X");
 
 	}
 

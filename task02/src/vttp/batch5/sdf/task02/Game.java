@@ -22,16 +22,22 @@ public class Game {
                         board[2][0] + " " + board[2][1] + " " + board[2][2] + "\n");
     }
 
-    // private ArrayList<Integer> makeAvailableSpotsArray() {
-    //     ArrayList<Integer> availableSpots = new ArrayList<>(9);
-    //     for (int i = 0; i < 3; i++) {
-    //         for (int j = 0; j < 3; j++) {
-    //             if (board[i][j] == '.')
-    //                 availableSpots.add(i);
-    //         }
-    //     }
-    //     return availableSpots;
-    // }
+    public Boolean isLegal(char board[][]) {
+        int numOfX = 0;
+        int numOfO = 0;
+
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                if (board[i][j] == 'X')
+                    numOfX++;
+                else if (board[i][j] == 'O')
+                    numOfO++;
+
+        if (numOfX <= numOfO)
+            return true;
+
+        return false;
+    }
 
     // This function returns true if there are moves
     // remaining on the board. It returns false if
