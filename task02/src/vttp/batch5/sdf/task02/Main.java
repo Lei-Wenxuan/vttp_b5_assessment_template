@@ -14,7 +14,7 @@ public class Main {
     static Boolean isMovesLeft(char board[][]) {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                if (board[i][j] == '_')
+                if (board[i][j] == '.')
                     return true;
         return false;
     }
@@ -26,9 +26,9 @@ public class Main {
             if (b[row][0] == b[row][1] &&
                     b[row][1] == b[row][2]) {
                 if (b[row][0] == player)
-                    return +10;
+                    return +1;
                 else if (b[row][0] == opponent)
-                    return -10;
+                    return -1;
             }
         }
 
