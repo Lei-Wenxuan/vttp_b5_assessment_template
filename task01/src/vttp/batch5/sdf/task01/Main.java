@@ -144,7 +144,7 @@ public class Main {
 	}
 
 	public static String toWeather(int weather) {
-		// season (1:clear, 2:mist + cloudy, 3:light snow, light rain, 4:heavy rain)
+		// season (1:clear..., 2:mist..., 3:light snow..., 4:heavy rain...)
 		switch (weather) {
 			case 1:
 			case 2:
